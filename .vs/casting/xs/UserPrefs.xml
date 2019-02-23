@@ -1,0 +1,14 @@
+﻿<Properties StartupConfiguration="{A76EC8A4-FC42-0177-4BDD-16549703CC7C}|">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PostProcessing/Editor/PropertyDrawers/MinDrawer.cs">
+    <Files>
+      <File FileName="Assets/PostProcessing/Editor/PropertyDrawers/MinDrawer.cs" Line="6" Column="41" />
+    </Files>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.ItemProperties.Assembly-CSharp PreferredExecutionTarget="Unity.Editor" />
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MultiItemStartupConfigurations />
+</Properties>
