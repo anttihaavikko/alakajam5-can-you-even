@@ -1,5 +1,5 @@
 ﻿<Properties StartupConfiguration="{A76EC8A4-FC42-0177-4BDD-16549703CC7C}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/CloudHolder.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/QuitButton.cs">
     <Files>
       <File FileName="Assets/Scripts/Face.cs" Line="161" Column="59" />
       <File FileName="Assets/Scripts/Letter.cs" Line="120" Column="9" />
@@ -10,7 +10,9 @@
       <File FileName="Assets/Scripts/EffectManager.cs" Line="34" Column="5" />
       <File FileName="Assets/Scripts/Rotator.cs" Line="19" Column="80" />
       <File FileName="Assets/Scripts/GolfBall.cs" Line="26" Column="30" />
-      <File FileName="Assets/Scripts/CloudHolder.cs" Line="7" Column="26" />
+      <File FileName="Assets/Scripts/CloudHolder.cs" Line="16" Column="10" />
+      <File FileName="Assets/Scripts/StartButton.cs" Line="40" Column="1" />
+      <File FileName="Assets/Scripts/QuitButton.cs" Line="17" Column="6" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
