@@ -23,7 +23,7 @@ public class StartButton : MonoBehaviour
             canUse = false;
 
             Tweener.Instance.ScaleTo(transform, new Vector3(2f, 0f, 1f), 0.5f, 0f, TweenEasings.QuarticEaseOut);
-            Tweener.Instance.ScaleTo(quitButton.transform, new Vector3(2f, 0f, 1f), 0.5f, 0.25f, TweenEasings.QuarticEaseOut);
+            Tweener.Instance.ScaleTo(quitButton.transform, new Vector3(2f, 0f, 1f), 0.5f, 0.35f, TweenEasings.QuarticEaseOut);
         }
     }
 
