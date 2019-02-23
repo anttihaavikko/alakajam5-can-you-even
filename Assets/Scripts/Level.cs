@@ -12,7 +12,7 @@ public class Level : MonoBehaviour
     public Letter[] letters;
 
     private LevelSelector levelSelector;
-    private string methodName;
+    private string methodName = null;
 
 
     // Start is called before the first frame update
@@ -39,7 +39,8 @@ public class Level : MonoBehaviour
         if (survival)
             methodName = "CheckAlive";
 
-        Invoke(methodName, checkDelay);
+        if (methodName != null)
+            Invoke(methodName, checkDelay);
     }
 
     public void ResetCheck()
@@ -91,5 +92,15 @@ public class Level : MonoBehaviour
     void CheckAlive()
     {
         DoCheck(true, methodName);
+    }
+
+    public void EndLevelAfter()
+    {
+        Invoke("EndLevel", 2f);
+    }
+
+    void EndLevel()
+    {
+        levelSelector.ChangeLevel();
     }
 }

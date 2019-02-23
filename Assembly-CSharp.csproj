@@ -192,6 +192,7 @@
     <Compile Include="Assets\Scripts\FollowCamera.cs" />
     <Compile Include="Assets\Scripts\FollowMouse.cs" />
     <Compile Include="Assets\Scripts\GeometryFromColliderScript.cs" />
+    <Compile Include="Assets\Scripts\GolfBall.cs" />
     <Compile Include="Assets\Scripts\HudManager.cs" />
     <Compile Include="Assets\Scripts\InputMagic.cs" />
     <Compile Include="Assets\Scripts\Letter.cs" />
