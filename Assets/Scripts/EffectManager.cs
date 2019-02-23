@@ -5,6 +5,7 @@ using UnityEngine;
 public class EffectManager : MonoBehaviour {
 
 	public GameObject[] effects;
+    public EffectCamera cam;
 
 	// ==================
 
@@ -36,4 +37,9 @@ public class EffectManager : MonoBehaviour {
 		e.transform.position = position;
 		return e;
 	}
+
+    public void BaseEffect(float mod = 1f)
+    {
+        cam.BaseEffect(mod);
+    }
 }

@@ -40,7 +40,7 @@ public class EffectCamera : MonoBehaviour {
 
 		// chromatic aberration update
 		if (filters) {
-			chromaAmount = Mathf.MoveTowards (chromaAmount, 0, Time.deltaTime * 0.01f);
+			chromaAmount = Mathf.MoveTowards (chromaAmount, 0, Time.deltaTime * 0.5f);
 			ChromaticAberrationModel.Settings g = filters.profile.chromaticAberration.settings;
 			g.intensity = chromaAmount;
 			filters.profile.chromaticAberration.settings = g;
@@ -87,7 +87,7 @@ public class EffectCamera : MonoBehaviour {
 
 	public void BaseEffect(float mod = 1f) {
 		Shake (0.04f * mod, 0.075f * mod);
-		Chromate (0.25f * mod, 0.1f * mod);
+		Chromate (0.5f * mod, 0.1f * mod);
 	}
 
     public void DoZoom()

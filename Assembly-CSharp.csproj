@@ -200,6 +200,7 @@
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\Mover.cs" />
     <Compile Include="Assets\Scripts\OptionsView.cs" />
+    <Compile Include="Assets\Scripts\Rotator.cs" />
     <Compile Include="Assets\Scripts\Shine.cs" />
     <Compile Include="Assets\Scripts\SoundEffect.cs" />
     <Compile Include="Assets\Scripts\Triangulator.cs" />
@@ -207,6 +208,7 @@
     <Compile Include="Assets\Scripts\TweenEasings.cs" />
     <Compile Include="Assets\Scripts\Tweener.cs" />
     <None Include="Assets\PostProcessing\Resources\Shaders\DepthOfField.shader" />
+    <None Include="Assets\Misc\LinearAlphaGradient.shader" />
     <None Include="Assets\PostProcessing\Resources\Shaders\MotionBlur.cginc" />
     <None Include="Assets\PostProcessing\Resources\Shaders\Fog.shader" />
     <None Include="Assets\PostProcessing\Editor Resources\Monitors\ParadeRender.shader" />

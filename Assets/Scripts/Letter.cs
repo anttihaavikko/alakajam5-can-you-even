@@ -37,6 +37,9 @@ public class Letter : MonoBehaviour
         mp.z = 10f;
         Vector3 mouseInWorld = cam.ScreenToWorldPoint(mp);
 
+        EffectManager.Instance.AddEffect(1, mouseInWorld);
+        EffectManager.Instance.AddEffect(2, mouseInWorld);
+
         joint.anchor = transform.InverseTransformPoint(mouseInWorld);
         joint.enabled = true;
         body.mass = mass * 2f;
@@ -65,5 +68,18 @@ public class Letter : MonoBehaviour
     private void OnMouseExit()
     {
         FollowMouse.Instance.hovering = false;
+    }
+
+    private void OnCollisionEnter2D(Collision2D collision)
+    {
+        if(collision.relativeVelocity.magnitude > 3f)
+        {
+            EffectManager.Instance.AddEffect(2, collision.contacts[0].point);
+        }
+
+        if (collision.relativeVelocity.magnitude > 5f)
+        {
+            EffectManager.Instance.BaseEffect(0.1f * collision.relativeVelocity.magnitude);
+        }
     }
 }
