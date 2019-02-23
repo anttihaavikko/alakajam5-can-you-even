@@ -40,6 +40,9 @@ public class Letter : MonoBehaviour
         joint.anchor = transform.InverseTransformPoint(mouseInWorld);
         joint.enabled = true;
         body.mass = mass * 2f;
+        FollowMouse.Instance.holding = true;
+
+        Cursor.visible = false;
     }
 
     private void OnMouseDrag()
@@ -51,5 +54,16 @@ public class Letter : MonoBehaviour
         body.mass = mass;
         joint.enabled = false;
         body.AddForce(dir * 100f, ForceMode2D.Impulse);
+        FollowMouse.Instance.holding = false;
+    }
+
+    private void OnMouseEnter()
+    {
+        FollowMouse.Instance.hovering = true;
+    }
+
+    private void OnMouseExit()
+    {
+        FollowMouse.Instance.hovering = false;
     }
 }

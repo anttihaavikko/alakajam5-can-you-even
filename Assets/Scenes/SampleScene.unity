@@ -1241,7 +1241,7 @@ GameObject:
   - component: {fileID: 768243728}
   - component: {fileID: 768243731}
   m_Layer: 0
-  m_Name: Mouse Body
+  m_Name: Mouse
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1275,7 +1275,7 @@ SpriteRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 768243727}
-  m_Enabled: 0
+  m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
   m_DynamicOccludee: 1
@@ -1305,12 +1305,12 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 500
-  m_Sprite: {fileID: 21300000, guid: 4844f34bdb54242f1a7bb5882ada20d9, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 0.5019608}
+  m_Sprite: {fileID: 21300000, guid: 4eb0ef6e9621840678f3fd8888c116ca, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
-  m_Size: {x: 1, y: 1}
+  m_Size: {x: 1.7, y: 1.7}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
@@ -1342,6 +1342,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcb785ba228ca43589453dd0681948ab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cursorSprite: {fileID: 21300000, guid: 4eb0ef6e9621840678f3fd8888c116ca, type: 3}
+  handSprite: {fileID: 21300000, guid: 1a72ffaa6e5104d96966ca130dac7bef, type: 3}
+  grabSprite: {fileID: 21300000, guid: 06392ed2567764c779587775e416ede5, type: 3}
+  sprite: {fileID: 768243729}
+  hovering: 0
+  holding: 0
 --- !u!1 &798138064
 GameObject:
   m_ObjectHideFlags: 0
@@ -2484,7 +2490,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 1
-  m_Sprite: {fileID: 21300000, guid: 879ae3a65baa142d1bb6661ab10170b4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: bbc123bb06eb746efadecc99605f1a3a, type: 3}
   m_Color: {r: 0.45490196, g: 0.44313726, b: 0.52156866, a: 1}
   m_FlipX: 0
   m_FlipY: 0

@@ -23,6 +23,7 @@ public class Level : MonoBehaviour
     {
         levelSelector = ls;
         Invoke("CheckLetters", checkDelay);
+        Cursor.visible = false;
     }
 
     void CheckLetters()
@@ -36,7 +37,7 @@ public class Level : MonoBehaviour
             }
         }
 
-        if(!allGood)
+        if(!allGood || FollowMouse.Instance.holding)
         {
             Invoke("CheckLetters", checkDelay);
         }
