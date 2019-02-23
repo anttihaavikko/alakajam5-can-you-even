@@ -1,7 +1,9 @@
 ﻿<Properties StartupConfiguration="{A76EC8A4-FC42-0177-4BDD-16549703CC7C}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/PostProcessing/Editor/PropertyDrawers/MinDrawer.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/FollowMouse.cs">
     <Files>
-      <File FileName="Assets/PostProcessing/Editor/PropertyDrawers/MinDrawer.cs" Line="6" Column="41" />
+      <File FileName="Assets/Scripts/Face.cs" Line="159" Column="4" />
+      <File FileName="Assets/Scripts/Letter.cs" Line="23" Column="9" />
+      <File FileName="Assets/Scripts/FollowMouse.cs" Line="17" Column="114" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

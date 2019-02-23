@@ -50,9 +50,12 @@ public class Face : MonoBehaviour {
 	private Face.Emotion nextEmotion;
 
 	public bool followMouse = false;
+    public Camera cam;
 
 	// Use this for initialization
 	void Awake () {
+
+        cam = Camera.main;
 
 		if (brows.Length > 0) {
 			browsTargetPosition = new Vector3[brows.Length];
@@ -156,9 +159,6 @@ public class Face : MonoBehaviour {
 		Vector2 lookPos = lookTarget ? Vector2.MoveTowards (transform.parent.position, lookTarget.position, 1f) : Vector2.zero;
 
 		if(followMouse) {
-			Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-			Vector3 mouseInWorld = Camera.main.transform.position - ray.direction * Camera.main.transform.position.z;
-			lookPos = mouseInWorld;
 		}
 
 		lookPos = Quaternion.Euler(new Vector3(0, 0, -transform.parent.rotation.eulerAngles.z)) * lookPos;
