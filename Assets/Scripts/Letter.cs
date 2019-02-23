@@ -17,6 +17,8 @@ public class Letter : MonoBehaviour
 
     public bool touchingBad = false;
 
+    private Level level;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +27,7 @@ public class Letter : MonoBehaviour
         mass = body.mass;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+        level = GetComponentInParent<Level>();
     }
 
     // Update is called once per frame
@@ -53,6 +56,8 @@ public class Letter : MonoBehaviour
         FollowMouse.Instance.holding = true;
 
         Cursor.visible = false;
+
+        touchingBad = false;
     }
 
     private void OnMouseDrag()
@@ -100,11 +105,6 @@ public class Letter : MonoBehaviour
         }
     }
 
-    private void OnCollisionExit2D(Collision2D collision)
-    {
-        touchingBad = false;
-    }
-
     private void Explode(float magnitude)
     {
         EffectManager.Instance.BaseEffect(0.1f * magnitude);
@@ -116,6 +116,9 @@ public class Letter : MonoBehaviour
         Invoke("Respawn", 4f);
         Invoke("MarkSpawn", 3.5f);
         gameObject.SetActive(false);
+        OnMouseUp();
+
+        level.ResetCheck();
     }
 
     void MarkSpawn()

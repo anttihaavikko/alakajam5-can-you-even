@@ -6,12 +6,13 @@ public class Level : MonoBehaviour
 {
     public bool spelling = true;
     public bool noTouch = false;
+    public bool survival = false;
 
     public float checkDelay = 5f;
     public Letter[] letters;
 
     private LevelSelector levelSelector;
-
+    private string methodName;
 
 
     // Start is called before the first frame update
@@ -30,10 +31,21 @@ public class Level : MonoBehaviour
         Cursor.visible = false;
 
         if(spelling)
-            Invoke("CheckLetters", checkDelay);
+            methodName = "CheckLetters";
 
         if (noTouch)
-            Invoke("CheckTouch", checkDelay);
+            methodName = "CheckTouch";
+
+        if (survival)
+            methodName = "CheckAlive";
+
+        Invoke(methodName, checkDelay);
+    }
+
+    public void ResetCheck()
+    {
+        CancelInvoke(methodName);
+        Invoke(methodName, checkDelay);
     }
 
     void CheckLetters()
@@ -47,7 +59,7 @@ public class Level : MonoBehaviour
             }
         }
 
-        DoCheck(allGood, "CheckLetters");
+        DoCheck(allGood, methodName);
     }
 
     void DoCheck(bool ok, string method)
@@ -70,10 +82,14 @@ public class Level : MonoBehaviour
             if (letters[i].touchingBad)
             {
                 allGood = false;
-                Debug.Log(letters[i] + " is touching");
             }
         }
 
-        DoCheck(allGood, "CheckTouch");
+        DoCheck(allGood, methodName);
+    }
+
+    void CheckAlive()
+    {
+        DoCheck(true, methodName);
     }
 }
