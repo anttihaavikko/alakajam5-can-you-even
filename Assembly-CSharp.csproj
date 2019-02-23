@@ -195,6 +195,8 @@
     <Compile Include="Assets\Scripts\HudManager.cs" />
     <Compile Include="Assets\Scripts\InputMagic.cs" />
     <Compile Include="Assets\Scripts\Letter.cs" />
+    <Compile Include="Assets\Scripts\Level.cs" />
+    <Compile Include="Assets\Scripts\LevelSelector.cs" />
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\Mover.cs" />
     <Compile Include="Assets\Scripts\OptionsView.cs" />

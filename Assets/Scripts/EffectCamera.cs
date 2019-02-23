@@ -20,21 +20,27 @@ public class EffectCamera : MonoBehaviour {
 
 	private Vector3 originalPos;
 
+    private float zoomDir = -0.2f;
+
+    private Camera cam;
+
 	void Start() {
 		filters = GetComponent<PostProcessingBehaviour>();
-		originalPos = transform.position;
-		Invoke ("StartFade", 0.5f);
+        originalPos = transform.localPosition;
+//		Invoke ("StartFade", 0.5f);
+
+        cam = Camera.main;
 	}
 
 	void Update() {
 		cutoffPos += Time.fixedDeltaTime / transitionTime;
 		cutoffPos = (cutoffPos > 1f) ? 1f : cutoffPos;
 		cutoff = Mathf.Lerp (prevCutoff, targetCutoff, cutoffPos);
-		transitionMaterial.SetFloat ("_Cutoff", cutoff);
+//		transitionMaterial.SetFloat ("_Cutoff", cutoff);
 
 		// chromatic aberration update
 		if (filters) {
-			chromaAmount = Mathf.MoveTowards (chromaAmount, 0, Time.deltaTime * chromaSpeed);
+			chromaAmount = Mathf.MoveTowards (chromaAmount, 0, Time.deltaTime * 0.01f);
 			ChromaticAberrationModel.Settings g = filters.profile.chromaticAberration.settings;
 			g.intensity = chromaAmount;
 			filters.profile.chromaticAberration.settings = g;
@@ -42,21 +48,23 @@ public class EffectCamera : MonoBehaviour {
 
 		if (shakeTime > 0f) {
 			shakeTime -= Time.deltaTime;
-			transform.position = originalPos + new Vector3 (Random.Range (-shakeAmount, shakeAmount), Random.Range (-shakeAmount, shakeAmount), 0);
+            transform.localPosition = originalPos + new Vector3 (Random.Range (-shakeAmount, shakeAmount), Random.Range (-shakeAmount, shakeAmount), 0);
 		} else {
-			transform.position = originalPos;
+            transform.localPosition = originalPos;
 		}
+
+        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + zoomDir, 5, 10);
 	}
 
 	void StartFade() {
 		Fade (false, 0.5f);
 	}
 
-	void OnRenderImage(RenderTexture src, RenderTexture dst) {
-		if (transitionMaterial) {
-			Graphics.Blit (src, dst, transitionMaterial);
-		}
-	}
+//	void OnRenderImage(RenderTexture src, RenderTexture dst) {
+//		if (transitionMaterial) {
+//			Graphics.Blit (src, dst, transitionMaterial);
+//		}
+//	}
 
 	public void Fade(bool show, float delay) {
 		targetCutoff = show ? 1.1f : -0.1f;
@@ -81,4 +89,15 @@ public class EffectCamera : MonoBehaviour {
 		Shake (0.04f * mod, 0.075f * mod);
 		Chromate (0.25f * mod, 0.1f * mod);
 	}
+
+    public void DoZoom()
+    {
+        zoomDir = -zoomDir;
+        Invoke("EndZoom", 1f);
+    }
+
+    void EndZoom()
+    {
+        zoomDir = -zoomDir;
+    }
 }

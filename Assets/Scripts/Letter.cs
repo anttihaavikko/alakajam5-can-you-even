@@ -10,12 +10,14 @@ public class Letter : MonoBehaviour
     private Rigidbody2D body;
     private Vector3 previousPoint = Vector3.zero;
     private Vector2 dir;
+    private float mass;
 
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         body = GetComponent<Rigidbody2D>();
+        mass = body.mass;
     }
 
     // Update is called once per frame
@@ -37,6 +39,7 @@ public class Letter : MonoBehaviour
 
         joint.anchor = transform.InverseTransformPoint(mouseInWorld);
         joint.enabled = true;
+        body.mass = mass * 2f;
     }
 
     private void OnMouseDrag()
@@ -45,6 +48,7 @@ public class Letter : MonoBehaviour
 
     private void OnMouseUp()
     {
+        body.mass = mass;
         joint.enabled = false;
         body.AddForce(dir * 100f, ForceMode2D.Impulse);
     }
