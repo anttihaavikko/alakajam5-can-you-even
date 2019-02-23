@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Level : MonoBehaviour
 {
+    public bool spelling = true;
+    public bool noTouch = false;
+
+    public float checkDelay = 5f;
     public Letter[] letters;
-    private float checkDelay = 5f;
+
     private LevelSelector levelSelector;
+
+
 
     // Start is called before the first frame update
     void Start()
@@ -16,14 +22,18 @@ public class Level : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
     }
 
     public void Activate(LevelSelector ls)
     {
         levelSelector = ls;
-        Invoke("CheckLetters", checkDelay);
         Cursor.visible = false;
+
+        if(spelling)
+            Invoke("CheckLetters", checkDelay);
+
+        if (noTouch)
+            Invoke("CheckTouch", checkDelay);
     }
 
     void CheckLetters()
@@ -37,14 +47,33 @@ public class Level : MonoBehaviour
             }
         }
 
-        if(!allGood || FollowMouse.Instance.holding)
+        DoCheck(allGood, "CheckLetters");
+    }
+
+    void DoCheck(bool ok, string method)
+    {
+        if (!ok || FollowMouse.Instance.holding)
         {
-            Invoke("CheckLetters", checkDelay);
+            Invoke(method, checkDelay);
         }
         else
         {
-            Debug.Log("All good!");
             levelSelector.ChangeLevel();
         }
+    }
+
+    void CheckTouch()
+    {
+        bool allGood = true;
+        for (int i = 0; i < letters.Length; i++)
+        {
+            if (letters[i].touchingBad)
+            {
+                allGood = false;
+                Debug.Log(letters[i] + " is touching");
+            }
+        }
+
+        DoCheck(allGood, "CheckTouch");
     }
 }

@@ -15,6 +15,8 @@ public class Letter : MonoBehaviour
     private Vector3 originalPosition;
     private Quaternion originalRotation;
 
+    public bool touchingBad = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -77,7 +79,12 @@ public class Letter : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.relativeVelocity.magnitude > 3f)
+        if(collision.gameObject.tag == "Bad")
+        {
+            touchingBad = true;
+        }
+
+        if (collision.relativeVelocity.magnitude > 3f)
         {
             EffectManager.Instance.AddEffect(2, collision.contacts[0].point);
         }
@@ -91,6 +98,11 @@ public class Letter : MonoBehaviour
         {
             Explode(collision.relativeVelocity.magnitude);
         }
+    }
+
+    private void OnCollisionExit2D(Collision2D collision)
+    {
+        touchingBad = false;
     }
 
     private void Explode(float magnitude)
