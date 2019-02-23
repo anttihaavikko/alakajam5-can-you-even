@@ -12,12 +12,17 @@ public class Letter : MonoBehaviour
     private Vector2 dir;
     private float mass;
 
+    private Vector3 originalPosition;
+    private Quaternion originalRotation;
+
     // Start is called before the first frame update
     void Start()
     {
         cam = Camera.main;
         body = GetComponent<Rigidbody2D>();
         mass = body.mass;
+        originalPosition = transform.position;
+        originalRotation = transform.rotation;
     }
 
     // Update is called once per frame
@@ -81,5 +86,39 @@ public class Letter : MonoBehaviour
         {
             EffectManager.Instance.BaseEffect(0.1f * collision.relativeVelocity.magnitude);
         }
+
+        if (collision.relativeVelocity.magnitude > 10f)
+        {
+            Explode(collision.relativeVelocity.magnitude);
+        }
+    }
+
+    private void Explode(float magnitude)
+    {
+        EffectManager.Instance.BaseEffect(0.1f * magnitude);
+        EffectManager.Instance.AddEffect(0, transform.position);
+        EffectManager.Instance.AddEffect(2, transform.position);
+        EffectManager.Instance.AddEffect(3, transform.position);
+        EffectManager.Instance.AddEffect(4, transform.position);
+        EffectManager.Instance.AddEffect(5, transform.position);
+        Invoke("Respawn", 4f);
+        Invoke("MarkSpawn", 3.5f);
+        gameObject.SetActive(false);
+    }
+
+    void MarkSpawn()
+    {
+        EffectManager.Instance.AddEffect(1, originalPosition);
+    }
+
+    private void Respawn()
+    {
+        Vector3 targetScale = transform.localScale;
+        gameObject.SetActive(true);
+        transform.localScale = Vector3.zero;
+        transform.position = originalPosition;
+        transform.rotation = originalRotation;
+        EffectManager.Instance.AddEffect(0, transform.position);
+        Tweener.Instance.ScaleTo(transform, targetScale, 0.4f, 0f, TweenEasings.BounceEaseOut);
     }
 }

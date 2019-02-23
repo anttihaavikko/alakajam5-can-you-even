@@ -1,13 +1,14 @@
 ﻿<Properties StartupConfiguration="{A76EC8A4-FC42-0177-4BDD-16549703CC7C}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/EffectCamera.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Rotator.cs">
     <Files>
       <File FileName="Assets/Scripts/Face.cs" Line="161" Column="59" />
-      <File FileName="Assets/Scripts/Letter.cs" Line="82" Column="90" />
+      <File FileName="Assets/Scripts/Letter.cs" Line="105" Column="32" />
       <File FileName="Assets/Scripts/Level.cs" Line="40" Column="52" />
       <File FileName="Assets/Scripts/LevelSelector.cs" Line="91" Column="12" />
       <File FileName="Assets/Scripts/EffectCamera.cs" Line="90" Column="15" />
       <File FileName="Assets/Scripts/FollowMouse.cs" Line="51" Column="42" />
       <File FileName="Assets/Scripts/EffectManager.cs" Line="34" Column="5" />
+      <File FileName="Assets/Scripts/Rotator.cs" Line="12" Column="70" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />
