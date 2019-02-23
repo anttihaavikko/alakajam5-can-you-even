@@ -185,6 +185,7 @@
     <Compile Include="Assets\Scripts\AudioManager.cs" />
     <Compile Include="Assets\Scripts\AutoEnd.cs" />
     <Compile Include="Assets\Scripts\BoxOutlinerScript.cs" />
+    <Compile Include="Assets\Scripts\CloudHolder.cs" />
     <Compile Include="Assets\Scripts\EffectCamera.cs" />
     <Compile Include="Assets\Scripts\EffectManager.cs" />
     <Compile Include="Assets\Scripts\Face.cs" />
