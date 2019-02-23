@@ -45,8 +45,11 @@ public class Level : MonoBehaviour
 
     public void ResetCheck()
     {
-        CancelInvoke(methodName);
-        Invoke(methodName, checkDelay);
+        if(methodName != null)
+        {
+            CancelInvoke(methodName);
+            Invoke(methodName, checkDelay);
+        }
     }
 
     void CheckLetters()

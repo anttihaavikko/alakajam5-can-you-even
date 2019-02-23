@@ -12,6 +12,9 @@ public class QuitButton : MonoBehaviour
     void Awake()
     {
         theSize = transform.localScale;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+            gameObject.SetActive(false);
     }
 
     private void OnMouseUp()
