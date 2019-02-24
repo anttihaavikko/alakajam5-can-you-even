@@ -15,6 +15,9 @@ public class StartButton : MonoBehaviour
     void Awake()
     {
         theSize = transform.localScale;
+
+        if (Application.platform == RuntimePlatform.WebGLPlayer)
+            transform.position = new Vector3(transform.position.x, -1.64f, 0f);
     }
 
     private void OnMouseUp()
