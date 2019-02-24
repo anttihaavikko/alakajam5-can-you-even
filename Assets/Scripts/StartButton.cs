@@ -9,6 +9,8 @@ public class StartButton : MonoBehaviour
     private Vector3 theSize;
     public QuitButton quitButton;
 
+    public Transform[] logoParts;
+
     // Start is called before the first frame update
     void Awake()
     {
@@ -26,6 +28,12 @@ public class StartButton : MonoBehaviour
             Tweener.Instance.ScaleTo(quitButton.transform, new Vector3(2f, 0f, 1f), 0.5f, 0.35f, TweenEasings.QuarticEaseOut);
             AudioManager.Instance.PlayEffectAt(6, transform.position, 1f);
             Invoke("QuitSound", 0.35f);
+
+            for(int i = 0; i < logoParts.Length; i++)
+            {
+                Tweener.Instance.ScaleTo(logoParts[3 - i], new Vector3(2f, 0f, 1f), 0.5f, 0.35f * 2 + i * 0.3f, TweenEasings.QuarticEaseOut);
+                AudioManager.Instance.PlayEffectAtAfterDelay(6, logoParts[3 - i].position, 1f, 0.35f * 2 + i * 0.3f);
+            }
         }
     }
 

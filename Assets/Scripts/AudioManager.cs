@@ -120,7 +120,20 @@ public class AudioManager : MonoBehaviour {
 		PlayEffectAt (effects [effect], pos, volume, pitchShift);
 	}
 
-	public void ChangeMusicVolume(float vol) {
+    public void PlayEffectAtAfterDelay(int effect, Vector3 pos, float volume, float delay)
+    {
+        StartCoroutine(PlayWithDelay(effect, pos, volume, delay));
+    }
+
+    IEnumerator PlayWithDelay(int effect, Vector3 pos, float volum, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        this.PlayEffectAt(effect, pos, volume);
+        yield return null;
+    }
+
+
+    public void ChangeMusicVolume(float vol) {
 		curMusic.volume = vol * 1.5f;
 		musVolume = vol * 1.5f;
 	}

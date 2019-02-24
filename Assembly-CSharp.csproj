@@ -202,6 +202,7 @@
     <Compile Include="Assets\Scripts\Manager.cs" />
     <Compile Include="Assets\Scripts\Mover.cs" />
     <Compile Include="Assets\Scripts\OptionsView.cs" />
+    <Compile Include="Assets\Scripts\Pulsate.cs" />
     <Compile Include="Assets\Scripts\QuitButton.cs" />
     <Compile Include="Assets\Scripts\RandomizeRotation.cs" />
     <Compile Include="Assets\Scripts\Rotator.cs" />

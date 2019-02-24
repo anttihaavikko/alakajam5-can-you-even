@@ -7,6 +7,7 @@ public class Level : MonoBehaviour
     public bool spelling = true;
     public bool noTouch = false;
     public bool survival = false;
+    public bool intro = false;
 
     public float checkDelay = 5f;
     public Letter[] letters;
@@ -14,6 +15,8 @@ public class Level : MonoBehaviour
     private LevelSelector levelSelector;
     private string methodName = null;
 
+    public Transform[] hints;
+    private Vector3 hintSize;
 
     // Start is called before the first frame update
     void Start()
@@ -44,6 +47,18 @@ public class Level : MonoBehaviour
 
         if (methodName != null)
             Invoke(methodName, checkDelay);
+
+        if (intro)
+        {
+            Invoke("SwapHints", 30f);
+            hintSize = hints[0].localScale;
+        }
+    }
+
+    void SwapHints()
+    {
+        Tweener.Instance.ScaleTo(hints[0], new Vector3(hintSize.x, 0f, 1f), 0.3f, 0f, TweenEasings.QuarticEaseOut);
+        Tweener.Instance.ScaleTo(hints[1], hintSize, 0.3f, 0.2f, TweenEasings.BounceEaseOut);
     }
 
     void EndHighpass()
