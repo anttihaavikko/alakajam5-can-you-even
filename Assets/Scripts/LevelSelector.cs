@@ -76,7 +76,7 @@ public class LevelSelector : MonoBehaviour {
             }   
         }
 
-        if (Input.GetKeyUp(KeyCode.Escape))
+        if (Input.GetKeyUp(KeyCode.Escape) && Application.platform != RuntimePlatform.WebGLPlayer)
             Application.Quit();
 	}
 
