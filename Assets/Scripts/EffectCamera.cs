@@ -53,7 +53,7 @@ public class EffectCamera : MonoBehaviour {
             transform.localPosition = originalPos;
 		}
 
-        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + zoomDir, 5, 10);
+        cam.orthographicSize = Mathf.Clamp(cam.orthographicSize + zoomDir, 5.5f, 10);
 	}
 
 	void StartFade() {
