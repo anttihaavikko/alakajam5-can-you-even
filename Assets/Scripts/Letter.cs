@@ -11,9 +11,11 @@ public class Letter : MonoBehaviour
     private Vector3 previousPoint = Vector3.zero;
     private Vector2 dir;
     private float mass;
+    private bool holding = false;
 
     private Vector3 originalPosition;
     private Quaternion originalRotation;
+    private Vector3 originalScale;
 
     public bool touchingBad = false;
 
@@ -29,6 +31,7 @@ public class Letter : MonoBehaviour
         mass = body.mass;
         originalPosition = transform.position;
         originalRotation = transform.rotation;
+        originalScale = transform.localScale;
         level = GetComponentInParent<Level>();
         face = GetComponentInChildren<Face>();
     }
@@ -49,6 +52,7 @@ public class Letter : MonoBehaviour
 
     private void OnMouseDown()
     {
+        holding = true;
         Vector3 mp = Input.mousePosition;
         mp.z = 10f;
         Vector3 mouseInWorld = cam.ScreenToWorldPoint(mp);
@@ -77,6 +81,7 @@ public class Letter : MonoBehaviour
 
     private void OnMouseUp()
     {
+        holding = false;
         body.mass = mass;
         joint.enabled = false;
         body.AddForce(dir * 100f, ForceMode2D.Impulse);
@@ -99,7 +104,7 @@ public class Letter : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        if(collision.gameObject.tag == "Bad")
+        if(collision.gameObject.tag == "Bad" && !holding)
         {
             touchingBad = true;
         }
@@ -130,6 +135,8 @@ public class Letter : MonoBehaviour
 
     private void Explode(float magnitude)
     {
+        holding = false;
+
         AudioManager.Instance.PlayEffectAt(2, transform.position, 1.5f);
         AudioManager.Instance.PlayEffectAt(3, transform.position, 1.5f);
         AudioManager.Instance.PlayEffectAt(21, transform.position, 1.5f);
@@ -169,15 +176,15 @@ public class Letter : MonoBehaviour
 
     private void Respawn()
     {
-        Vector3 targetScale = transform.localScale;
         gameObject.SetActive(true);
         transform.localScale = Vector3.zero;
         transform.position = originalPosition;
         transform.rotation = originalRotation;
+        transform.localScale = originalScale;
         EffectManager.Instance.AddEffect(0, transform.position);
         AudioManager.Instance.PlayEffectAt(14, transform.position, 1f);
         AudioManager.Instance.PlayEffectAt(20, transform.position, 0.7f);
-        Tweener.Instance.ScaleTo(transform, targetScale, 0.4f, 0f, TweenEasings.BounceEaseOut);
+        Tweener.Instance.ScaleTo(transform, originalScale, 0.4f, 0f, TweenEasings.BounceEaseOut);
         Invoke("Brag", 0.5f);
     }
 

@@ -112,6 +112,30 @@ public class Level : MonoBehaviour
             }
         }
 
+        if (allGood && !FollowMouse.Instance.holding)
+        {
+            Invoke("DoubleCheckTouch", checkDelay);
+
+            AudioManager.Instance.PlayEffectAt(18, transform.position, 2.5f);
+            AudioManager.Instance.PlayEffectAt(20, transform.position, 1f);
+        }
+        else
+        {
+            Invoke("CheckTouch", checkDelay);
+        }
+    }
+
+    void DoubleCheckTouch()
+    {
+        bool allGood = true;
+        for (int i = 0; i < letters.Length; i++)
+        {
+            if (letters[i].touchingBad)
+            {
+                allGood = false;
+            }
+        }
+
         DoCheck(allGood, methodName);
     }
 

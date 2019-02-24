@@ -10,7 +10,6 @@ public class LevelSelector : MonoBehaviour {
     public Transform camHolder;
 
 
-
 	// Use this for initialization
 	void Start () {
 
@@ -76,6 +75,9 @@ public class LevelSelector : MonoBehaviour {
                 ChangeLevel(-1);
             }   
         }
+
+        if (Input.GetKeyUp(KeyCode.Escape))
+            Application.Quit();
 	}
 
 	public void ChangeLevel(int dir = 1) {
