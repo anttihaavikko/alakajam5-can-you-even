@@ -1,18 +1,19 @@
 ﻿<Properties StartupConfiguration="{A76EC8A4-FC42-0177-4BDD-16549703CC7C}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/QuitButton.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Letter.cs">
     <Files>
       <File FileName="Assets/Scripts/Face.cs" Line="161" Column="59" />
-      <File FileName="Assets/Scripts/Letter.cs" Line="120" Column="9" />
-      <File FileName="Assets/Scripts/Level.cs" Line="9" Column="34" />
+      <File FileName="Assets/Scripts/Letter.cs" Line="168" Column="37" />
+      <File FileName="Assets/Scripts/Level.cs" Line="52" Column="10" />
       <File FileName="Assets/Scripts/LevelSelector.cs" Line="10" Column="32" />
-      <File FileName="Assets/Scripts/EffectCamera.cs" Line="90" Column="15" />
+      <File FileName="Assets/Scripts/EffectCamera.cs" Line="89" Column="26" />
       <File FileName="Assets/Scripts/FollowMouse.cs" Line="51" Column="42" />
       <File FileName="Assets/Scripts/EffectManager.cs" Line="34" Column="5" />
       <File FileName="Assets/Scripts/Rotator.cs" Line="19" Column="80" />
       <File FileName="Assets/Scripts/GolfBall.cs" Line="26" Column="30" />
       <File FileName="Assets/Scripts/CloudHolder.cs" Line="16" Column="10" />
-      <File FileName="Assets/Scripts/StartButton.cs" Line="40" Column="1" />
-      <File FileName="Assets/Scripts/QuitButton.cs" Line="17" Column="6" />
+      <File FileName="Assets/Scripts/StartButton.cs" Line="42" Column="13" />
+      <File FileName="Assets/Scripts/QuitButton.cs" Line="44" Column="6" />
+      <File FileName="Assets/Scripts/AudioManager.cs" Line="97" Column="55" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

@@ -17,6 +17,8 @@ public class Letter : MonoBehaviour
 
     public bool touchingBad = false;
 
+    private Face face;
+
     private Level level;
 
     // Start is called before the first frame update
@@ -28,6 +30,7 @@ public class Letter : MonoBehaviour
         originalPosition = transform.position;
         originalRotation = transform.rotation;
         level = GetComponentInParent<Level>();
+        face = GetComponentInChildren<Face>();
     }
 
     // Update is called once per frame
@@ -39,6 +42,9 @@ public class Letter : MonoBehaviour
 
         dir = mouseInWorld - previousPoint;
         previousPoint = mouseInWorld;
+
+        if(touchingBad)
+            face.Emote(Face.Emotion.Sad);
     }
 
     private void OnMouseDown()
@@ -50,6 +56,9 @@ public class Letter : MonoBehaviour
         EffectManager.Instance.AddEffect(1, mouseInWorld);
         EffectManager.Instance.AddEffect(2, mouseInWorld);
 
+        AudioManager.Instance.PlayEffectAt(17, transform.position, 2.5f);
+        AudioManager.Instance.PlayEffectAt(14, transform.position, 1f);
+
         joint.anchor = transform.InverseTransformPoint(mouseInWorld);
         joint.enabled = true;
         body.mass = mass * 2f;
@@ -58,6 +67,8 @@ public class Letter : MonoBehaviour
         Cursor.visible = false;
 
         touchingBad = false;
+
+        face.Emote(Face.Emotion.Sneaky);
     }
 
     private void OnMouseDrag()
@@ -70,11 +81,15 @@ public class Letter : MonoBehaviour
         joint.enabled = false;
         body.AddForce(dir * 100f, ForceMode2D.Impulse);
         FollowMouse.Instance.holding = false;
+        AudioManager.Instance.PlayEffectAt(17, transform.position, 2.5f);
+        AudioManager.Instance.PlayEffectAt(15, transform.position, 1f);
+        face.Emote(Face.Emotion.Happy);
     }
 
     private void OnMouseEnter()
     {
         FollowMouse.Instance.hovering = true;
+        AudioManager.Instance.PlayEffectAt(4, transform.position, 1f);
     }
 
     private void OnMouseExit()
@@ -87,6 +102,14 @@ public class Letter : MonoBehaviour
         if(collision.gameObject.tag == "Bad")
         {
             touchingBad = true;
+        }
+
+        if(collision.relativeVelocity.magnitude > 0.5f)
+        {
+            AudioManager.Instance.PlayEffectAt(17, collision.contacts[0].point, Mathf.Min(collision.relativeVelocity.magnitude, 4f));
+            AudioManager.Instance.PlayEffectAt(16, collision.contacts[0].point, 0.5f * Mathf.Min(collision.relativeVelocity.magnitude, 4f));
+
+            face.Emote(Face.Emotion.Shocked, Face.Emotion.Default, 0.75f);
         }
 
         if (collision.relativeVelocity.magnitude > 3f)
@@ -107,23 +130,41 @@ public class Letter : MonoBehaviour
 
     private void Explode(float magnitude)
     {
-        EffectManager.Instance.BaseEffect(0.1f * magnitude);
+        AudioManager.Instance.PlayEffectAt(2, transform.position, 1.5f);
+        AudioManager.Instance.PlayEffectAt(3, transform.position, 1.5f);
+        AudioManager.Instance.PlayEffectAt(21, transform.position, 1.5f);
+        AudioManager.Instance.PlayEffectAt(7, transform.position, 1.5f);
+
+        EffectManager.Instance.BaseEffect(0.2f * magnitude);
+
         EffectManager.Instance.AddEffect(0, transform.position);
         EffectManager.Instance.AddEffect(2, transform.position);
         EffectManager.Instance.AddEffect(3, transform.position);
         EffectManager.Instance.AddEffect(4, transform.position);
         EffectManager.Instance.AddEffect(5, transform.position);
-        Invoke("Respawn", 4f);
-        Invoke("MarkSpawn", 3.5f);
+
+        float diff = Random.Range(-0.5f, 0.5f);
+
+        Invoke("Respawn", 4f + diff);
+        Invoke("MarkSpawn", 3.5f + diff);
         gameObject.SetActive(false);
         OnMouseUp();
 
         level.ResetCheck();
+
+        AudioManager.Instance.targetPitch = 0.8f;
+        Invoke("ResetPitch", 1f);
+    }
+
+    void ResetPitch()
+    {
+        AudioManager.Instance.targetPitch = 1f;
     }
 
     void MarkSpawn()
     {
         EffectManager.Instance.AddEffect(1, originalPosition);
+        AudioManager.Instance.PlayEffectAt(10, transform.position, 1f);
     }
 
     private void Respawn()
@@ -134,6 +175,14 @@ public class Letter : MonoBehaviour
         transform.position = originalPosition;
         transform.rotation = originalRotation;
         EffectManager.Instance.AddEffect(0, transform.position);
+        AudioManager.Instance.PlayEffectAt(14, transform.position, 1f);
+        AudioManager.Instance.PlayEffectAt(20, transform.position, 0.7f);
         Tweener.Instance.ScaleTo(transform, targetScale, 0.4f, 0f, TweenEasings.BounceEaseOut);
+        Invoke("Brag", 0.5f);
+    }
+
+    void Brag()
+    {
+        face.Emote(Face.Emotion.Brag);
     }
 }

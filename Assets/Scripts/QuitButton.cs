@@ -28,13 +28,19 @@ public class QuitButton : MonoBehaviour
     private void OnMouseEnter()
     {
         if (canUse)
+        {
             Tweener.Instance.ScaleTo(transform, theSize * 1.1f, 0.5f, 0f, TweenEasings.BounceEaseOut);
+            AudioManager.Instance.PlayEffectAt(4, transform.position, 1.25f);
+        }
     }
 
     private void OnMouseExit()
     {
         if (canUse)
+        {
             Tweener.Instance.ScaleTo(transform, theSize, 0.5f, 0f, TweenEasings.BounceEaseOut);
+            AudioManager.Instance.PlayEffectAt(4, transform.position, 1.25f);
+        }
     }
 
 }

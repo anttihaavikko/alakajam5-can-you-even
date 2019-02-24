@@ -63,14 +63,14 @@ MonoBehaviour:
   pupilRange: {x: 0.2, y: 0.2}
   mouthCloseChange: 0.5
   mouthSpeed: 1
-  mouthRange: {x: 0.1, y: 0.1, z: 1}
-  browRange: 0.05
+  mouthRange: {x: 0.06, y: 0.1, z: 1}
+  browRange: 0.025
   lookTarget: {fileID: 0}
   lookSpeed: 0.5
-  emoteSpeed: 0.05
+  emoteSpeed: 0.02
   mouthSprite: {fileID: 6678751123877181770}
   mouthAngry: {fileID: 21300000, guid: 8566669cfda1247e29a543b2360792e0, type: 3}
-  mouthSad: {fileID: 21300000, guid: 8566669cfda1247e29a543b2360792e0, type: 3}
+  mouthSad: {fileID: 21300000, guid: 952da7f0109a0441ebcf8ae399d87487, type: 3}
   mouthHappy: {fileID: 21300000, guid: 8566669cfda1247e29a543b2360792e0, type: 3}
   mouthOpen: {fileID: 21300000, guid: 8566669cfda1247e29a543b2360792e0, type: 3}
   followMouse: 1

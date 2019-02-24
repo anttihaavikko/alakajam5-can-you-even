@@ -26,9 +26,11 @@ public class AudioManager : MonoBehaviour {
 
 	private bool doingLowpass, doingHighpass;
 
-	/******/
+    public float targetPitch = 1f;
 
-	private static AudioManager instance = null;
+    /******/
+
+    private static AudioManager instance = null;
 	public static AudioManager Instance {
 		get { return instance; }
 	}
@@ -91,15 +93,13 @@ public class AudioManager : MonoBehaviour {
 	}
 
 	void Update() {
-
-		float targetPitch = 1f;
-		float targetLowpass = (doingLowpass) ? 5000f : 22000;
-		float targetHighpass = (doingHighpass) ? 400f : 10f;
+		float targetLowpass = (doingLowpass) ? 1000f : 22000;
+		float targetHighpass = (doingHighpass) ? 2000f : 10f;
 		float changeSpeed = 0.075f;
 
-		curMusic.pitch = Mathf.MoveTowards (curMusic.pitch, targetPitch, 0.005f * changeSpeed);
+		curMusic.pitch = Mathf.MoveTowards (curMusic.pitch, targetPitch, 0.01f * changeSpeed);
 		lowpass.cutoffFrequency = Mathf.MoveTowards (lowpass.cutoffFrequency, targetLowpass, 750f * changeSpeed);
-		highpass.cutoffFrequency = Mathf.MoveTowards (highpass.cutoffFrequency, targetHighpass, 50f * changeSpeed);
+		highpass.cutoffFrequency = Mathf.MoveTowards (highpass.cutoffFrequency, targetHighpass, 400f * changeSpeed);
 	}
 
 	public void PlayEffectAt(AudioClip clip, Vector3 pos, float volume, bool pitchShift = true) {

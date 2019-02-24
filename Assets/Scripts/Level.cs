@@ -30,7 +30,10 @@ public class Level : MonoBehaviour
         levelSelector = ls;
         Cursor.visible = false;
 
-        if(spelling)
+        Invoke("EndHighpass", 1f);
+        AudioManager.Instance.targetPitch = 1f;
+
+        if (spelling)
             methodName = "CheckLetters";
 
         if (noTouch)
@@ -41,6 +44,11 @@ public class Level : MonoBehaviour
 
         if (methodName != null)
             Invoke(methodName, checkDelay);
+    }
+
+    void EndHighpass()
+    {
+        AudioManager.Instance.Highpass(false);
     }
 
     public void ResetCheck()
@@ -74,7 +82,7 @@ public class Level : MonoBehaviour
         }
         else
         {
-            levelSelector.ChangeLevel();
+            EndLevel();
         }
     }
 
@@ -103,6 +111,16 @@ public class Level : MonoBehaviour
     }
 
     void EndLevel()
+    {
+        AudioManager.Instance.PlayEffectAt(18, transform.position, 4f);
+        AudioManager.Instance.PlayEffectAt(20, transform.position, 1.5f);
+        Invoke("DoEnd", 1f);
+
+        AudioManager.Instance.Highpass(true);
+        AudioManager.Instance.targetPitch = 1.2f;
+    }
+
+    void DoEnd()
     {
         levelSelector.ChangeLevel();
     }
