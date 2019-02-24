@@ -48,6 +48,12 @@ public class Letter : MonoBehaviour
 
         if(touchingBad)
             face.Emote(Face.Emotion.Sad);
+
+        var hits = Physics2D.BoxCastAll(transform.position, new Vector2(0.1f, 0.3f), 0f, Vector2.zero);
+
+        if (hits.Length > 1)
+            Explode(2f);
+
     }
 
     private void OnMouseDown()
